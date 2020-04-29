@@ -1,0 +1,23 @@
+.vote {
+  display: inline-block;
+  overflow: auto;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  background: url('http://i.stack.imgur.com/iqN2k.png');
+  background-position: 0 -25px;
+} 
+.vote1 {
+  transform: rotate(180deg);
+  display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+  background: url('http://i.stack.imgur.com/iqN2k.png');
+  background-position: 0 -25px;
+}
+
+.vote.on {
+  background-position: 0 2px;
+}

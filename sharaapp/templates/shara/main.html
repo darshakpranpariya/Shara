@@ -1,0 +1,32 @@
+{% extends 'shara/index.html' %}
+
+{% block content %}
+    <div class = "container-fluid mt-2">
+        <div class="card mb-3" style="max-width: 800px;">
+        <div class="row no-gutters">
+            <div class="col-md-2 py-3 text-center">
+                <span class="vote" onMouseOver="myFunction()" title="press twice."> </span>
+                <br/><br/>
+                <span class="vote1" onclick="myFunction()" title="press twice."> </span>
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                okay fried and i will see u in the next episod</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            for (const btn of document.querySelectorAll('.vote')) {
+                btn.addEventListener('click', event => {
+                event.target.classList.toggle('on');
+                });
+            }
+        }
+    </script>
+{% endblock content %}
