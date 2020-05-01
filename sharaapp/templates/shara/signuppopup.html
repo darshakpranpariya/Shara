@@ -1,16 +1,17 @@
-<div id="modal-wrapper" class="modal">
+<div id="modal-wrapper1" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate" action="/views.py">
         
     <div class="imgcontainer">
-      <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
-      <h1 style="text-align:center">LogIn</h1>
+      <span onclick="document.getElementById('modal-wrapper1').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <h1 style="text-align:center">SignUp</h1>
     </div>
 
     <div class="container">
       <input type="text" placeholder="Enter Username" name="uname">
+      <input type="text" placeholder="Enter Email" name="email">
       <input type="password" placeholder="Enter Password" name="psw">        
-      <button id = "btn" type="submit">Login</button>
+      <button id = "btn" type="submit">SignUp</button>
       <input type="checkbox" style="margin:26px 30px;"> Remember me      
       <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a>
     </div>
@@ -23,9 +24,15 @@
 // If user clicks anywhere outside of the modal, Modal will close
 
 var modal = document.getElementById('modal-wrapper');
+var modal1 = document.getElementById('modal-wrapper1');
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+    else{
+      if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
     }
 }
 </script>
