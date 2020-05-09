@@ -1,38 +1,46 @@
-<div id="modal-wrapper1" class="modal">
-  
-  <form class="modal-content animate" action="/views.py">
-        
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('modal-wrapper1').style.display='none'" class="close" title="Close PopUp">&times;</span>
-      <h1 style="text-align:center">SignUp</h1>
-    </div>
-
-    <div class="container">
-      <input type="text" placeholder="Enter Username" name="uname">
-      <input type="text" placeholder="Enter Email" name="email">
-      <input type="password" placeholder="Enter Password" name="psw">        
-      <button id = "btn" type="submit">SignUp</button>
-      <input type="checkbox" style="margin:26px 30px;"> Remember me      
-      <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password ?</a>
-    </div>
-    
-  </form>
-  
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message | safe }}
 </div>
+{% endfor %}
 
-<script>
-// If user clicks anywhere outside of the modal, Modal will close
 
-var modal = document.getElementById('modal-wrapper');
-var modal1 = document.getElementById('modal-wrapper1');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-    else{
-      if (event.target == modal1) {
-        modal1.style.display = "none";
-      }
-    }
-}
-</script>
+<!-- Modal -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">SignUp</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/main/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputUsername1">Username</label>
+            <input type="text" name = "uname" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp" placeholder="Enter Username" required>
+            <small id="Usernamehelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name = "psw" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
