@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth import authenticate
 
@@ -8,14 +9,11 @@ def index(request):
     return render(request,'shara/index.html')
     
 def main(request):
-    print("hello")
     if request.method == 'POST':
-        print("hellooooooo")
         signup_data = request.POST.dict()
         username = signup_data.get("uname")
         email = signup_data.get("email")
         password = signup_data.get("psw")
-        dic = {'name':username}
         if(username is not None and email is not None and password is not None):
             if(User.objects.filter(username=username).exists()):
                 messages.error(request, "Username is already exists.")
@@ -31,9 +29,9 @@ def main(request):
             if(username is not None):
                 user = authenticate(username=username, password=password)
                 if(user is not None):
-                    messages.success(request, "LogIn Successful")
-                    print(dic['name'])
-                    return render(request,'shara/main.html',dic)
+                    messages.success(request, "Login Successful")
+                    login(request, user)
+                    return render(request,'shara/main.html',{'name':username,'user':user})
                 else:
                     messages.error(request, "Username/Password is wrong.")
                     return render(request,'shara/main.html')
@@ -46,6 +44,14 @@ def main(request):
                     messages.error(request, "Email/Password is wrong.")
                     return render(request,'shara/main.html')
     return render(request,'shara/main.html')
+
+def profile(request):
+    return render(request,'shara/profile.html')
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect('shara/main.html')
 
 # def signup(request):
 #     if request.method == 'POST':
