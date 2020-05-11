@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'main' %}" active>Home <span class="sr-only">(current)</span></a>
             </li>
             <form class="form-inline my-2 my-lg-0" >
                 <input style="width:475px" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -35,7 +35,7 @@
         <div>
                 {% if user.is_authenticated %}
                     <a href="{% url 'profile' %}" class="list-group-item list-group-item-action"><span>Welcome back {{ user.username }}!</span></a>
-                    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action"><span>Logout</span></a>
+                    {% comment %} <a href="{% url 'logout' %}" class="list-group-item list-group-item-action">Logout</a> {% endcomment %}
                 {% else %}
                     <button  data-toggle="modal" data-target="#signup" type="button" class="btn btn-success" title="Register yourself">SignUp</button>
                     <button data-toggle="modal" data-target="#login" type="button" class="btn btn-warning" title="Login here">LogIn</button>
