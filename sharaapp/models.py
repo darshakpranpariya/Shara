@@ -19,3 +19,15 @@ class DeepUserDetails(models.Model):
     def __str__(self):
         return u'%s - %d' % (self.userid.username,self.reputation)
 
+# class Tips(models.Model):
+#     userid = models.ForeignKey(User,on_delete=models.CASCADE)
+#     tags = models.CharField(max_length=50)
+#     comment = models.CharField()
+#     links
+#     file = models.FileField()
+    
+#     date = 
+#     upvote
+#     downvote
+#     totalscore //score of upvote - downvote
+#     tag         

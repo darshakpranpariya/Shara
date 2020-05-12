@@ -17,6 +17,8 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                 okay fried and i will see u in the next episod</p>
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="card-link">Update</a>
+                                <a href="#" class="card-link">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -28,10 +30,49 @@
                         <h5 class="card-title">Porfile</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Tips</button>
+                        <!-- <a href="#" class="card-link">Another link</a> -->
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for adding tips -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Write Tips</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control">
+                    <option>Programming</option>
+                    <option>Skills</option>
+                    <option>Maths</option>
+                    <option>Life Hacks</option>
+                    <option>Other</option>
+                </select>
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Links:</label>
+                    <textarea class="form-control" rows="5" id="links" placeholder="Always write new links on new line.."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Example file input</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
             </div>
         </div>
     </div>
