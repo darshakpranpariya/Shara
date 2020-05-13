@@ -41,38 +41,43 @@
     <!-- modal for adding tips -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Write Tips</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <select class="form-control">
-                    <option>Programming</option>
-                    <option>Skills</option>
-                    <option>Maths</option>
-                    <option>Life Hacks</option>
-                    <option>Other</option>
-                </select>
-                <div class="form-group">
-                    <label for="comment">Comment:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Write Tips</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="comment">Links:</label>
-                    <textarea class="form-control" rows="5" id="links" placeholder="Always write new links on new line.."></textarea>
+                <div class="modal-body">
+                    <form action="/addtips/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <select class="form-control" name="tag">
+                            <option>Programming</option>
+                            <option>Skills</option>
+                            <option>Maths</option>
+                            <option>Life Hacks</option>
+                            <option>Other</option>
+                        </select>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Links:</label>
+                            <textarea class="form-control" rows="5" id="links" placeholder="Always write new links on new line.." name="link"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Example file input</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
             </div>
         </div>
     </div>

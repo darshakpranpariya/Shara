@@ -4,6 +4,8 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from  sharaapp.models import Tips
+import datetime
 
 def index(request):
     return render(request,'shara/index.html')
@@ -53,6 +55,18 @@ def logout_request(request):
     messages.info(request, "Logged out successfully!")
     return redirect('shara/main.html')
 
+def addtips(request):
+    if request.method == 'POST':
+        tips_data = request.POST.dict()
+        tag = tips_data.get("tag")
+        comment = tips_data.get("comment")
+        link = tips_data.get("link")
+        file = request.FILES['file']
+        userid = request.user;
+        ob = Tips(userid_id=userid.id,tags=tag,comment=comment,links=link,file=file,date=datetime.datetime.now(),upvote=0,downvote=0,totalscore=0)
+        ob.save()
+        return render(request,'shara/main.html')
+    return render(request,'shara/profile.html')
 # def signup(request):
 #     if request.method == 'POST':
 #         print("hello")

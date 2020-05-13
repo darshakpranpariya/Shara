@@ -19,15 +19,13 @@ class DeepUserDetails(models.Model):
     def __str__(self):
         return u'%s - %d' % (self.userid.username,self.reputation)
 
-# class Tips(models.Model):
-#     userid = models.ForeignKey(User,on_delete=models.CASCADE)
-#     tags = models.CharField(max_length=50)
-#     comment = models.CharField()
-#     links
-#     file = models.FileField()
-    
-#     date = 
-#     upvote
-#     downvote
-#     totalscore //score of upvote - downvote
-#     tag         
+class Tips(models.Model):
+    userid = models.ForeignKey(User,on_delete=models.CASCADE)
+    tags = models.CharField(max_length=50)
+    comment = models.CharField(max_length=5000,blank=True,null=True)
+    links = models.CharField(max_length=5000,blank=True,null=True)
+    file = models.FileField(blank=True,null=True)
+    date = models.DateTimeField(auto_now=True)
+    upvote = models.PositiveIntegerField()
+    downvote = models.PositiveIntegerField()
+    totalscore = models.IntegerField()
