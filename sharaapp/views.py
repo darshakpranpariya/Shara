@@ -11,6 +11,8 @@ def index(request):
     return render(request,'shara/index.html')
     
 def main(request):
+    alltips= Tips.objects.all()
+    context= {'alltips': alltips}
     if request.method == 'POST':
         signup_data = request.POST.dict()
         username = signup_data.get("uname")
@@ -45,7 +47,7 @@ def main(request):
                 else:
                     messages.error(request, "Email/Password is wrong.")
                     return render(request,'shara/main.html')
-    return render(request,'shara/main.html')
+    return render(request,'shara/main.html',context)
 
 def profile(request):
     return render(request,'shara/profile.html')

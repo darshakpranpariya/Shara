@@ -20,11 +20,11 @@ class DeepUserDetails(models.Model):
         return u'%s - %d' % (self.userid.username,self.reputation)
 
 class Tips(models.Model):
-    userid = models.ForeignKey(User,on_delete=models.CASCADE)
+    userid = models.ForeignKey(User,on_delete=models.SET_NULL, null=True, blank=True, related_name='user')
     tags = models.CharField(max_length=50)
     comment = models.CharField(max_length=5000,blank=True,null=True)
     links = models.CharField(max_length=5000,blank=True,null=True)
-    file = models.FileField(blank=True,null=True)
+    file =  models.FileField(upload_to='files/', null=True, verbose_name="")
     date = models.DateTimeField(auto_now=True)
     upvote = models.PositiveIntegerField()
     downvote = models.PositiveIntegerField()

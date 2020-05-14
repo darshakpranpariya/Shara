@@ -1,53 +1,67 @@
 {% extends 'shara/index.html' %}
 
 {% block content %}
-    <div class = "row container-fluid mt-2">
-        <div class="col-md-9">
-        <div class="card mb-3" style="max-width: 900px;">
-            <div class="row no-gutters">
-            <div class="col-md-2 py-3 text-center">
-                <span class="vote" onMouseOver="myFunction()" title="press twice."> </span>
-                <br/><br/>
-                <span class="vote1" onclick="myFunction()" title="press twice."> </span>
+    <div class = "container-fluid mt-2">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card mb-3" style="max-width: 900px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-2 py-3 text-center">
+                            <span class="vote" onMouseOver="myFunction()" title="press twice."> </span>
+                            <br/><br/>
+                            <span class="vote1" onclick="myFunction()" title="press twice."> </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                okay fried and i will see u in the next episod</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                okay fried and i will see u in the next episod</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-            </div>
-        </div>
-        </div>
 
-        <div class="card mb-3" style="max-width: 900px;">
-            <div class="row no-gutters">
-            <div class="col-md-2 py-3 text-center">
-                <span class="vote" onMouseOver="myFunction()" title="press twice."> </span>
-                <br/><br/>
-                <span class="vote1" onclick="myFunction()" title="press twice."> </span>
+            <div class="col-md-3">
+                    <div class="card" style="max-width: 400px;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
             </div>
-            <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                okay fried and i will see u in the next episod</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="col-md-3">
-        <div class="card" style="max-width: 400px;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            </div>
+            
+            {% for tip in alltips %}
+                <div class="col-md-9">
+                    <div class="card mb-3" style="max-width: 900px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-2 py-3 text-center">
+                                <span class="vote" onMouseOver="myFunction()" title="press twice."> </span>
+                                <br/><br/>
+                                <span class="vote1" onclick="myFunction()" title="press twice."> </span>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{tip.tags}}</h5>
+                                    <p class="card-text">{{tip.comment}}</p>
+                                    <a href="{{tip.links}}" class="stretched-link">{{tip.links}}</a>
+                                    <br/>
+                                    <img alt="hello" src="/media/{{tip.file}}" height="300" width="300" class="option1" id="incorrect_answer1">
+                                    <p class="card-text"><small class="text-muted">{{tip.date}}</small></p>
+                                    {% comment %} {% for userdata in tip.user.all %}
+                                        <p class="card-text"><small class="text-muted">{{userdata.username}}</small></p>
+                                        <p class="card-text"><small class="text-muted">{{userdata.email}}</small></p>
+                                    {% endfor %} {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
+
     
 
     <script>
