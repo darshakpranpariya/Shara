@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User,auth
-from django.contrib.auth import login, logout
+from django.contrib.auth import *
+from django.contrib.auth import logout as django_logout
 from django.contrib import messages
 from django.contrib.auth import authenticate
-from  sharaapp.models import Tips
+from  sharaapp.models import *
 import datetime
+from django.shortcuts import HttpResponseRedirect
 
 def index(request):
     return render(request,'shara/index.html')
@@ -26,6 +28,8 @@ def main(request):
             else:
                 ob1 = User.objects.create_user(username=username,email=email,password=password)
                 ob1.save()
+                ob2 = DeepUserDetails(userid_id=id,reputation=0,totalupvote=0,totaldownvote=0,totaltips=0)
+                ob2.save()
                 messages.success(request, "you are successfully registered.")
                 messages.info(request, "please, do login.")
                 return render(request,'shara/main.html')
@@ -35,7 +39,7 @@ def main(request):
                 if(user is not None):
                     messages.success(request, "Login Successful")
                     login(request, user)
-                    return render(request,'shara/main.html',{'name':username,'user':user})
+                    return render(request,'shara/main.html',context)
                 else:
                     messages.error(request, "Username/Password is wrong.")
                     return render(request,'shara/main.html')
@@ -52,10 +56,10 @@ def main(request):
 def profile(request):
     return render(request,'shara/profile.html')
 
-def logout_request(request):
-    logout(request)
+def logout(request):
+    django_logout(request)
     messages.info(request, "Logged out successfully!")
-    return redirect('shara/main.html')
+    return HttpResponseRedirect('/main/')
 
 def addtips(request):
     if request.method == 'POST':
@@ -67,6 +71,8 @@ def addtips(request):
         userid = request.user;
         ob = Tips(userid_id=userid.id,tags=tag,comment=comment,links=link,file=file,date=datetime.datetime.now(),upvote=0,downvote=0,totalscore=0)
         ob.save()
+        u = DeepUserDetails.objects.get(userid_id=userid)
+        print(u)
         return render(request,'shara/main.html')
     return render(request,'shara/profile.html')
 # def signup(request):
