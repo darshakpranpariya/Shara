@@ -28,7 +28,8 @@ def main(request):
             else:
                 ob1 = User.objects.create_user(username=username,email=email,password=password)
                 ob1.save()
-                ob2 = DeepUserDetails(userid_id=id,reputation=0,totalupvote=0,totaldownvote=0,totaltips=0)
+                p = User.objects.get(username=username)
+                ob2 = DeepUserDetails(userid_id=p.id,reputation=0,totalupvote=0,totaldownvote=0,totaltips=0)
                 ob2.save()
                 messages.success(request, "you are successfully registered.")
                 messages.info(request, "please, do login.")
@@ -54,7 +55,11 @@ def main(request):
     return render(request,'shara/main.html',context)
 
 def profile(request):
-    return render(request,'shara/profile.html')
+    if request.user.is_authenticated:
+        return render(request,'shara/profile.html')
+    else:
+        messages.warning(request,"Please, consider to do login first")
+        return HttpResponseRedirect('/main/')
 
 def logout(request):
     django_logout(request)
@@ -71,9 +76,11 @@ def addtips(request):
         userid = request.user;
         ob = Tips(userid_id=userid.id,tags=tag,comment=comment,links=link,file=file,date=datetime.datetime.now(),upvote=0,downvote=0,totalscore=0)
         ob.save()
-        u = DeepUserDetails.objects.get(userid_id=userid)
-        print(u)
-        return render(request,'shara/main.html')
+        u = DeepUserDetails.objects.get(userid_id=userid.id)
+        u.totaltips+=1
+        u.save()
+        messages.info(request,"Your tips uploaded successfully!")
+        return HttpResponseRedirect('/profile/')
     return render(request,'shara/profile.html')
 # def signup(request):
 #     if request.method == 'POST':

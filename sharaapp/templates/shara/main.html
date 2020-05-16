@@ -56,11 +56,23 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{tip.tags}}</h5>
                                     <p class="card-text">{{tip.comment}}</p>
-                                    <a href="{{tip.links}}" class="stretched-link">{{tip.links}}</a>
+                                    {% comment %} {% if  tip.links  %} {% endcomment %}
+                                        {% comment %} <h3>These are some links you can refer..<h3><br/> {% endcomment %}
+                                    {% comment %} {% endif %} {% endcomment %}
+                                    
+                                    <div class="card">
+                                        <a href="{{tip.links}}" class="stretched-link">{{tip.links|linebreaks}}</a>
+                                        {% comment %} {%for i in tip.links%}
+                                            {%if not i|linebreaks %}
+                                                <a href="{{tip.links}}" class="stretched-link">{{i}}</a>
+                                            {%else%}
+                                                <br/>
+                                            {% endif %}
+                                        {%endfor%} {% endcomment %}
+                                    </div>
                                     <br/>
                                     <img alt="hello" src="/media/{{tip.file}}" height="300" width="300" class="option1" id="incorrect_answer1">
                                     <p class="card-text"><small class="text-muted">{{tip.date}}</small></p>
-                                    <p class="card-text"><small class="text-muted">{{tip.userid.username}}</small></p>
                                 </div>
                             </div>
        
